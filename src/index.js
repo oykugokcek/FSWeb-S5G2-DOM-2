@@ -10,7 +10,7 @@ alert("Bana tıkladın!")
 
 //
 //
-//                  CLİCK
+//                  CLİCK-WHEEL
 //
 //
 const joke = document.createElement("div");
@@ -24,15 +24,26 @@ joke.textContent = " Buraya basınız.";
 
 
 document.querySelector(".container .nav").appendChild(joke);
-console.log(joke);
+
+
 
 joke.addEventListener("click", function shiftRight() {
     joke.style.margin = "0 100px 0 0";
 });
 
-joke.addEventListener("click", function shiftLeft() {
+joke.addEventListener("dblclick", function shiftLeft() {
     joke.style.margin = "0 0 0 100px";
 });
+
+
+                // WHEEL
+
+
+joke.addEventListener("wheel", function() {
+    joke.setAttribute("class", "animation");
+});
+
+
 
 //tekrar eski haline getirme??????????????????????????????????????
 
@@ -53,15 +64,14 @@ firstSection.addEventListener("click", function(x) {
 
 
 const headings = document.querySelectorAll("h2");
-for (let i =0; i<headings.length-1; i++)
-{
-    headings[i].addEventListener("mouseover", function() {
-        headings[i].style.backgroundColor = "purple"; 
-    });
-    headings[i].addEventListener("mouseout", function() {
-        headings[i].style.backgroundColor = "white"; 
-    });
-}
+headings.forEach((item) => {
+    item.addEventListener("mouseover", function() {
+                item.style.backgroundColor = "purple"; 
+            });
+        item.addEventListener("mouseout", function() {
+                    item.style.backgroundColor = "white"; 
+                });
+})
 
 
 //                  Button-textİnput-flex
@@ -74,12 +84,15 @@ for (let i =0; i<headings.length-1; i++)
 const inputBox = document.createElement("div");
 
 const button = document.createElement("BUTTON");
-button.setAttribute("value", "Gnder");
+// button.textContent("Gönder");
+button.style.width = "40px";
 
 
 const textBox = document.createElement("INPUT");
 textBox.setAttribute("type", "text");
 textBox.setAttribute("value", "Eposta giriniz.");
+
+
 
 inputBox.appendChild(textBox);
 inputBox.appendChild(button);
@@ -93,17 +106,75 @@ inputBox.style.display ="flex";
 inputBox.style.justifyContent ="center";
 
 
-
 //                  
 //
 //              KEYDOWN KEYUP    
-//
+//              Focus
 //
 
-textBox.addEventListener("keypress", function() {
+textBox.addEventListener("keydown", function() {
     textBox.setAttribute("value", "");
-    textBox.backgroundColor = "blue";
+    textBox.style.backgroundColor = "blue";
+    textBox.style.color = "white";
 });
-//????????????????????????????????????????????????????
+
+textBox.addEventListener("focus", function() {
+    textBox.style.background = "pink";
+});
+
+///////////////GRAYSCALE YAP
 
 
+
+
+
+////////////////////load
+
+const loading = document.querySelector(".loading");
+
+window.addEventListener("load", function() {
+    loading.style.display = "none";
+});
+
+
+
+
+
+//////////////resize
+
+window.addEventListener("resize", function()
+{
+    alert("Lütfen küçültme beni!");
+})
+
+///////////////////scroll
+const heart = document.createElement("div");
+heart.textContent = "❤️";
+heart.style.position ="fixed";
+heart.style.zIndex ="100";
+heart.style.top ="100px";
+heart.style.left ="100px";
+heart.style.right ="100px";
+heart.style.bottom ="100px";
+heart.style.fontSize ="100px";
+heart.style.alignItems= "center";
+
+window.addEventListener("scroll", function()
+{
+document.body.appendChild(heart);
+}
+);
+
+
+
+
+
+//////////////////select 
+
+const paragraph = document.querySelectorAll(p);
+paragraph.forEach((item) => {
+    item.addEventListener("select", function()
+    {
+        item.style.color = "black";
+    } )
+})
